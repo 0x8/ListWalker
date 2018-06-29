@@ -24,7 +24,7 @@ class ListWalker():
             return False
 
     def __repr__(self):
-        return "ListWalker()"
+        return "ListWalker({})".format(self._itemlist)
 
     def __str__(self):
         return str(self._itemlist)
@@ -42,9 +42,11 @@ class ListWalker():
     def __getitem__(self, index):
         if index < 0:
             if (index * -1) > self._len:
-                raise IndexError  # -idx can be == len (somelist[-len(somelist)] == somelist[0])
-                                  # but somelist[-len(somelist)-1] shouldn't make sense or work.
-            index = self._len + index  # Neg. idx yields len-idx. indexing from right.
+                # -idx can be == len (somelist[-len(somelist)] == somelist[0])
+                # but somelist[-len(somelist)-1] shouldn't make sense or work.
+                raise IndexError  
+            # Neg. idx yields len-idx. indexing from right.                     
+            index = self._len + index  
         if index >= self._len:
             raise IndexError        
         return self._itemlist[index]
