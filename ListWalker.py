@@ -96,3 +96,6 @@ class ListWalker():
 
     def get_front(self):
         return self._itemlist[0]
+
+    def reset(self):
+        self._cidx = -1
